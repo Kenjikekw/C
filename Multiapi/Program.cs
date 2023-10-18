@@ -19,6 +19,8 @@ class Program
         builder.Services.AddDbContext<UsersContextPostgres>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("UserContextPostgres")));
        
+       builder.Services.AddDbContext<UsersContextMySql>(options =>
+        options.UseMySql(builder.Configuration.GetConnectionString("UsersContextMySql"),new MySqlServerVersion(new Version(8, 0, 34))));
        
        
 
@@ -26,9 +28,7 @@ class Program
         builder.Services.AddControllers();
         builder.Services.AddTransient<IJuegoService, JuegoService>();
         builder.Services.AddTransient<IAnimalService, AnimalService>();
-        /*builder.Services.AddTransient<IPuntuacionService, PuntuacionService>();
-        builder.Services.AddTransient<ILogroService, LogroService>();
-        builder.Services.AddTransient<IAmigoService, AmigoService>();*/
+        builder.Services.AddTransient<IEnfermedadService, EnfermedadService>();
 
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
