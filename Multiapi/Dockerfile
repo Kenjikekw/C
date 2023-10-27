@@ -19,5 +19,6 @@ COPY --from=build-env /App/out .
 VOLUME [ "/logs" ]
 
 CMD dotnet tool install --global dotnet-ef 
+#& dotnet ef database update --context UsersContextSqlServer & dotnet ef database update --context UsersContextMySql & dotnet ef database update --context UsersContextPostgres
 
 ENTRYPOINT ["dotnet", "Multiapi.dll"]
